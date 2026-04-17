@@ -1,0 +1,26 @@
+server:
+  port: ${PORT:3000}
+
+spring:
+  application:
+    name: bms-sf-backend
+  datasource:
+    url: jdbc:sqlite:${DB_PATH:./database/bms.db}
+    driver-class-name: org.sqlite.JDBC
+  mvc:
+    throw-exception-if-no-handler-found: false
+  jackson:
+    default-property-inclusion: non_null
+
+logging:
+  level:
+    root: INFO
+    com.evernex.bms: INFO
+
+bms:
+  jwt:
+    secret: ${JWT_SECRET:bms-sf-secret-change-in-production-must-be-long-enough-for-hs256}
+    expires-hours: 12
+  llm:
+    base-url: ${LLM_BASE_URL:http://127.0.0.1:1234}
+    model: ${LLM_MODEL:local-model}

@@ -1,0 +1,48 @@
+# macOS
+.DS_Store
+
+# Node.js / Vite
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+frontend/dist/
+frontend/.vite/
+
+# 환경 변수 (민감 정보)
+.env
+.env.local
+.env.*.local
+
+# Java / Maven / Gradle
+target/
+build/
+*.class
+*.jar
+*.war
+.gradle/
+
+# Spring Boot
+application-local.properties
+application-local.yml
+
+# IDE 설정
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.project
+.classpath
+.settings/
+
+# Claude Code 로컬 설정
+.claude/
+
+# OS 기타
+Thumbs.db
+desktop.ini
+
+# 로그
+*.log
+logs/

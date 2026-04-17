@@ -1,0 +1,63 @@
+# Model: `nvidia/nemotron-3-nano-4b`
+
+> 자동 벤치마크 · 2026-04-17 · BMS Text-to-SQL 모드
+
+## 요약 점수
+
+| 지표 | 점수 | 근거 |
+|---|---|---|
+| 속도 (Latency) | **4/5** | 성공 쿼리 평균 응답시간 |
+| SQL 생성 (SQL Validity) | **5.0/5** | SQL 생성 성공률 |
+| 결과 정합성 (Rows sanity) | **5.0/5** | COUNT=1 / GROUP=공장수 6 근처 여부 |
+| 리포트 품질 (Report) | **5/5** | 리포트 생성 + 제목 여부 |
+| **종합 (weighted 20/30/30/20)** | **4.8/5** | |
+
+- 전체 성공: **4/4** (KO 2/2 · EN 2/2)
+- 총 소요: 30.2s
+
+## 쿼리별 결과
+
+| ID | Locale | 성공 | 응답시간(s) | SQL 생성 | rows_count | 에러 요약 |
+|---|---|---|---|---|---|---|
+| ko-count | ko | ✓ | 4.72 | ✓ | 1 |  |
+| ko-group | ko | ✓ | 4.92 | ✓ | 6 |  |
+| en-count | en | ✓ | 2.55 | ✓ | 1 |  |
+| en-group | en | ✓ | 8.39 | ✓ | 6 |  |
+
+### ko-count — SQL
+```sql
+SELECT COUNT(*) FROM cars LIMIT 100
+```
+**답변 (앞 280자):** 
+전체 차량은 총 **2,425대**입니다. (COUNT(*) = 2425)
+
+### ko-group — SQL
+```sql
+SELECT f.factory_name, COUNT(c.car_id) AS car_count FROM factories f JOIN cars c ON f.factory_id = c.factory_id GROUP BY f.factory_name LIMIT 100
+```
+**답변 (앞 280자):** 
+단풍공장: 366대, 백운공장: 432대, 은하공장: 408대, 청림공장: 400대, 태양공장: 401대, 한빛공장: 419대
+
+### en-count — SQL
+```sql
+SELECT COUNT(*) FROM cars LIMIT 100
+```
+**답변 (앞 280자):** 
+There are **2,427** vehicles in total (based on the SQL result showing `COUNT(*)` = 2427).
+
+### en-group — SQL
+```sql
+SELECT f.factory_name, COUNT(c.car_id) AS car_count FROM cars c JOIN factories f ON c.factory_id = f.factory_id GROUP BY f.factory_name LIMIT 100
+```
+**답변 (앞 280자):** 
+Cheongrim Plant: 367  
+Backun Plant: 432  
+Hahapant Plant: 409  
+Clearim Plant: 400  
+Sunny Plant: 401  
+Hanbit Plant: 419
+
+## 리포트 결과
+
+- ok: `True`  | latency: `9.58s`  | id: `23`
+- title: **Vehicle Count Discrepancy & Factories**

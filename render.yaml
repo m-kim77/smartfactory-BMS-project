@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: bms-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    region: singapore
+    plan: free
+    branch: main
+    autoDeploy: true
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PORT
+        value: 3000
+      - key: DB_PATH
+        value: /app/database/bms.db
+      - key: LLM_BASE_URL
+        value: https://api.openai.com
+      - key: LLM_MODEL
+        value: gpt-4o-mini

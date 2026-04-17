@@ -46,3 +46,11 @@ desktop.ini
 # 로그
 *.log
 logs/
+
+# 데이터베이스 (DB 파일은 코드가 아님, 용량/보안 문제)
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+backend/database/

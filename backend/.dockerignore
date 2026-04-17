@@ -1,0 +1,13 @@
+target/
+database/
+*.db
+*.db-wal
+*.db-shm
+.idea/
+.vscode/
+*.iml
+.DS_Store
+.git/
+.gitignore
+README.md
+*.log
